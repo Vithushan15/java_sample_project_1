@@ -1,5 +1,6 @@
 package com.vulnble;
 
+import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -21,7 +22,9 @@ public class FetchRecords {
             Connection con= DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/abc","xx","xxxxx");
             //here sonoo is database name, root is username and password
-            Statement stmt=con.createStatement();
+//            Statement stmt=con.createStatement();
+				PreparedStatement pstmt_llgdy = con.prepareStatement( " Select * from KT_UserMaster  where user_id = ?  and user_name = ?  and user_avg = ?  ");					 pstmt_llgdy.setInt(1,userId); pstmt_llgdy.setString(2,userName); pstmt_llgdy.setFloat(3,user_avg);			//            ResultSet rs = pstmt_llgdy.executeQuery();
+ 
 //            ResultSet rs=stmt.executeQuery("select * from KT_UserMaster where user_id="+userId +" and user_name="+userName+" and user_avg="+user_avg+"\"");
 				PreparedStatement pstmt_eqyqw = con.prepareStatement( " Select * from KT_UserMaster  where user_id = ?  and user_name = ?  and user_avg = ?  ");	
 				pstmt_eqyqw.setInt(1,userId); pstmt_eqyqw.setString(2,userName); pstmt_eqyqw.setFloat(3,user_avg);	

@@ -1,5 +1,6 @@
 package com.vulnble;
 
+import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -22,7 +23,9 @@ public class LoginProcess {
             Connection con= DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/abc","xxx","xxx");
             //here sonoo is database name, root is username and password
-            Statement stmt=con.createStatement();
+//            Statement stmt=con.createStatement();
+				PreparedStatement pstmt_ubzzr = con.prepareStatement( " Select * from KT_UserMaster  where user_id = ?  ");			 pstmt_ubzzr.setInt(1,userId);			ResultSet rs = pstmt_ubzzr.executeQuery();
+ 
             ResultSet rs=stmt.executeQuery("select * from KT_UserMaster where user_id="+userId);
             while(rs.next())
                 System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));
